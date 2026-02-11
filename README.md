@@ -1,1 +1,1 @@
-# crafty_bay-e-commerce-Apoication
+# crafty_bay-e-commerce-Application
