@@ -8,8 +8,12 @@ class Routes {
     switch (settings.name) {
       case SplashScreen.name:
          widget=SplashScreen();
+         break;
       case  SignUpScreen.name:
         widget=SignUpScreen();
+        break;
+      default:
+        widget = SplashScreen();
     }
 
     return MaterialPageRoute(builder: (context)=>widget
