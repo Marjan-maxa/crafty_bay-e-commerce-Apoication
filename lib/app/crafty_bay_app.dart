@@ -1,4 +1,5 @@
 import 'package:crafty_bay/app/provider/localization_provider.dart';
+import 'package:crafty_bay/app/provider/theme_provider.dart';
 import 'package:crafty_bay/app/routes.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,35 +18,40 @@ class CraftyBayApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>LocalizationProvider())
+        ChangeNotifierProvider(create: (_)=>LocalizationProvider()..loadLocale()),
+        ChangeNotifierProvider(create: (_)=>ThemeProvider()..loadThemeMode()),
       ],
       child: Consumer<LocalizationProvider>(
         builder: (context,localizationProvider,child) {
-          return MaterialApp(
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.light,
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: localizationProvider.supportedLocal,
-            debugShowCheckedModeBanner: false,
-            initialRoute: SplashScreen.name,
-            onGenerateRoute: Routes.onGenerateRoute,
-            locale: localizationProvider.locale,
-            // builder: (context, child) {
-            //
-            //   final locale = Localizations.localeOf(context);
-            //   return Directionality(
-            //     textDirection: locale.languageCode == 'ar'
-            //         ? TextDirection.rtl
-            //         : TextDirection.ltr,
-            //     child: child!,
-            //   );
-            // },
+          return Consumer<ThemeProvider>(
+            builder: (context,themeProvider,_) {
+              return MaterialApp(
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: themeProvider.themeMode,
+                localizationsDelegates: [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: localizationProvider.supportedLocal,
+                debugShowCheckedModeBanner: false,
+                initialRoute: SplashScreen.name,
+                onGenerateRoute: Routes.onGenerateRoute,
+                locale: localizationProvider.locale,
+                // builder: (context, child) {
+                //
+                //   final locale = Localizations.localeOf(context);
+                //   return Directionality(
+                //     textDirection: locale.languageCode == 'ar'
+                //         ? TextDirection.rtl
+                //         : TextDirection.ltr,
+                //     child: child!,
+                //   );
+                // },
+              );
+            }
           );
         }
       ),

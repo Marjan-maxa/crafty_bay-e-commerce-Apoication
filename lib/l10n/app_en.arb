@@ -1,4 +1,8 @@
 {
    "appName": "Crafty Bay",
-   "signUp": "Sign up"
+   "signUp": "Sign up",
+   "createYourAccount": "Create Your Account",
+   "getStartedWithDetails": "Get Started with Details",
+   "signIn": "LogIn Your Account",
+   "signInDetails": "Sign In  Your Account Details"
 }

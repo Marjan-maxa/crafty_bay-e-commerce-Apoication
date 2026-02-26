@@ -1,4 +1,8 @@
 {
    "appName": "Crafty Bay ARABIC",
-   "signUp": "اشتراك"
+   "signUp": "اشتراك",
+   "createYourAccount": "قم بإنشاء حسابك",
+   "getStartedWithDetails": "ابدأ بالتفاصيل",
+   "signIn": "تسجيل الدخول إلى حسابك",
+   "signInDetails": "تسجيل الدخول إلى تفاصيل حسابك"
 }
