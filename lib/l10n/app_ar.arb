@@ -4,5 +4,7 @@
    "createYourAccount": "قم بإنشاء حسابك",
    "getStartedWithDetails": "ابدأ بالتفاصيل",
    "signIn": "تسجيل الدخول إلى حسابك",
-   "signInDetails": "تسجيل الدخول إلى تفاصيل حسابك"
+   "signInDetails": "تسجيل الدخول إلى تفاصيل حسابك",
+   "forgetPasswordEmailVerified": "عنوان بريدك  الإلكتروني",
+   "forgetPasswordEmailVerifiedDetails": "سيتم إرسال رمز تحقق مكون من 4 أرقام إلى عنوان بريدك الإلكتروني"
 }

@@ -4,5 +4,7 @@
    "createYourAccount": "আপনার অ্যাকাউন্ট তৈরি করুন",
    "getStartedWithDetails": "বিস্তারিত দিয়ে শুরু করুন",
    "signIn": "আপনার অ্যাকাউন্টে লগইন করুন",
-   "signInDetails": "সাইন ইন করুন আপনার অ্যাকাউন্টের বিবরণ"
+   "signInDetails": "সাইন ইন করুন আপনার অ্যাকাউন্টের বিবরণ",
+   "forgetPasswordEmailVerified": "আপনার ইমেইল ঠিকানা",
+   "forgetPasswordEmailVerifiedDetails": "আপনার ইমেল ঠিকানায় একটি 4 সংখ্যার যাচাইকরণ পিন পাঠানো হবে"
 }

@@ -1,7 +1,6 @@
 
 import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
-import 'package:crafty_bay/features/auth/presentation/screens/forget_password_email_verified_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
 
@@ -10,15 +9,17 @@ import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
-  SignInScreen({super.key});
-  static const String name='/SignIn';
+import 'forget_password_otp_screen.dart';
+
+class ForgetPasswordEmailVerified extends StatefulWidget {
+  ForgetPasswordEmailVerified({super.key});
+  static const String name='/Email_verify';
 
   @override
-  State<SignInScreen> createState() => _SignUpState();
+  State<ForgetPasswordEmailVerified> createState() => _SignUpState();
 }
 
-class _SignUpState extends State<SignInScreen> {
+class _SignUpState extends State<ForgetPasswordEmailVerified> {
   final TextEditingController _emailController=TextEditingController();
   final TextEditingController _passwordController=TextEditingController();
 
@@ -41,8 +42,8 @@ class _SignUpState extends State<SignInScreen> {
                     height: 110,
                   ),
                   const SizedBox(height: 16,),
-                  Text(context.l10n.signIn,style: context.textTheme.titleLarge,),
-                  Text(context.l10n.signInDetails,style: context.textTheme.bodyLarge?.copyWith(
+                  Text(context.l10n.forgetPasswordEmailVerified,style: context.textTheme.titleLarge,),
+                  Text(context.l10n.forgetPasswordEmailVerifiedDetails,style: context.textTheme.bodyLarge?.copyWith(
                       color: Colors.grey
                   )),
                   const SizedBox(height: 18,),
@@ -83,57 +84,17 @@ class _SignUpState extends State<SignInScreen> {
                         )
                     ),
                   ),
-                  const SizedBox(height: 18,),
-
-                  TextFormField(
-                    controller: _passwordController,
-                    textInputAction:TextInputAction.next,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: 'Password',
-                        hintStyle: TextStyle(
-                            color: Colors.grey
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: AppColor.themeColor
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
-                              color: AppColor.themeColor
-                          ),
-
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
-                              color: AppColor.themeColor
-                          ),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: Colors.red
-                            )
-                        )
-                    ),
-                  ),
                   const SizedBox(height: 16,),
                   FilledButton(
-                      onPressed:(){}, child: Text('Login')
+                      onPressed:_onTapForgetPasswordNextButton, child: Text('Next')
                   ),
-
-                  TextButton(onPressed: _onTapForgetPasswordButton, child: Text('Forget Password?',style: TextStyle(color: Colors.black38),)),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-                 Text("Don't have an account?",style: TextStyle(fontWeight: FontWeight.bold)),
-                 TextButton(onPressed:_onTapsignUpButton, child: Text('Sign Up'))
-               ],
-             )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account?",style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextButton(onPressed:_onTapsignUpButton, child: Text('Sign Up'))
+                    ],
+                  )
 
 
                 ],
@@ -145,10 +106,10 @@ class _SignUpState extends State<SignInScreen> {
     );
   }
   void _onTapsignUpButton(){
-  Navigator.pop(context);
+    Navigator.pushNamed(context, SignUpScreen.name);
   }
-  void _onTapForgetPasswordButton(){
-     Navigator.pushNamed(context, ForgetPasswordEmailVerified.name);
+  void _onTapForgetPasswordNextButton(){
+    Navigator.pushNamed(context, ForgetPasswordOtpScreen.name);
   }
 
 
