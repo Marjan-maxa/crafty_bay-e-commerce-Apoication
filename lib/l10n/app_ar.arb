@@ -6,5 +6,10 @@
    "signIn": "تسجيل الدخول إلى حسابك",
    "signInDetails": "تسجيل الدخول إلى تفاصيل حسابك",
    "forgetPasswordEmailVerified": "عنوان بريدك  الإلكتروني",
-   "forgetPasswordEmailVerifiedDetails": "سيتم إرسال رمز تحقق مكون من 4 أرقام إلى عنوان بريدك الإلكتروني"
+   "forgetPasswordEmailVerifiedDetails": "سيتم إرسال رمز تحقق مكون من 4 أرقام إلى عنوان بريدك الإلكتروني",
+   "fogetPasswordOtp": "أدخل رمز OTP",
+   "fogetPasswordOtpDetails": "تم إرسال رمز OTP مكون من أربعة أرقام",
+   "otpSendTimer": "يمكنك إعادة إرسال رمز التحقق لمرة واحدة بعد ذلك",
+   "otpSendTime": "10 ثوانٍ" ,
+   "reSendButton": "أعد إرسال رمز التحقق لمرة واحدة"
 }

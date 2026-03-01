@@ -6,5 +6,10 @@
    "signIn": "LogIn Your Account",
    "signInDetails": "Sign In  Your Account Details",
    "forgetPasswordEmailVerified": "Your Email Address",
-   "forgetPasswordEmailVerifiedDetails": "A 4 digit verification pin will send to your email address"
+   "forgetPasswordEmailVerifiedDetails": "A 4 digit verification pin will send to your email address",
+   "fogetPasswordOtp": "Enter OTP Code",
+   "fogetPasswordOtpDetails": "A Four Digit OTP Code Has Been Sent",
+   "otpSendTimer": "You can resend OTP after",
+   "otpSendTime": "10s",
+   "reSendButton": "Resend OTP"
 }
