@@ -27,6 +27,7 @@ dependencies:
   shared_preferences:
   pin_code_fields: 9.1.0
   timer_count_down: ^2.2.2
+  carousel_slider: ^5.1.2
 
 dev_dependencies:
   flutter_test:

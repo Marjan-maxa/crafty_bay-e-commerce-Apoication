@@ -2,12 +2,8 @@ import 'dart:async';
 
 import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
-import 'package:crafty_bay/features/auth/presentation/screens/forget_password_email_verified_screen.dart';
-import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
-import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
 
 import 'package:crafty_bay/features/auth/presentation/widgets/logo_widget.dart';
-import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -113,7 +109,9 @@ class _SignUpState extends State<ForgetPasswordOtpScreen> {
       ),
     );
   }
+
 }
+
 
 
 

@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 
 import '../l10n/app_localizations.dart';
+import '../shares/presentations/provider/main_nav_provider.dart';
 import 'app_theme.dart';
 
 
@@ -20,6 +21,7 @@ class CraftyBayApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_)=>LocalizationProvider()..loadLocale()),
         ChangeNotifierProvider(create: (_)=>ThemeProvider()..loadThemeMode()),
+        ChangeNotifierProvider(create: (_)=>MainNavProvider()),
       ],
       child: Consumer<LocalizationProvider>(
         builder: (context,localizationProvider,child) {

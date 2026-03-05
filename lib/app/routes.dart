@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/forget_password_email_verified_screen.dart';
 import '../features/auth/presentation/screens/forget_password_otp_screen.dart';
+import '../shares/presentations/screen/main_nav_holder_screen.dart';
 
 class Routes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -24,6 +25,9 @@ class Routes {
         break;
       case ForgetPasswordOtpScreen.name:
         widget=ForgetPasswordOtpScreen();
+        break;
+      case MainNavHolderScreen.name:
+        widget=MainNavHolderScreen();
         break;
       default:
         widget=SplashScreen();
