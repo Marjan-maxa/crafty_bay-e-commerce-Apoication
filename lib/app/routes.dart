@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../features/auth/presentation/screens/forget_password_email_verified_screen.dart';
 import '../features/auth/presentation/screens/forget_password_otp_screen.dart';
 import '../features/catagory/presentation/screens/catagory_list_screen.dart';
+import '../features/product/presentation/screeen/product_list.dart';
 import '../shares/presentations/screen/main_nav_holder_screen.dart';
 
 class Routes {
@@ -32,6 +33,10 @@ class Routes {
         break;
       case CatagoryListScreen.name:
         widget = CatagoryListScreen();
+        break;
+      case ProductList.name:
+        final categories = settings.arguments as String;
+        widget = ProductList(categories: categories);
         break;
       default:
         widget = SplashScreen();

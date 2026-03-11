@@ -1,5 +1,6 @@
 import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/features/home/presentation/screen/home_screen.dart';
+import 'package:crafty_bay/features/wishlist/presentation/screen/wish_list_screen.dart';
 import 'package:crafty_bay/shares/presentations/provider/main_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,7 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
     HomeScreen(),
     CatagoryListScreen(),
     SizedBox(),
-    SizedBox(),
+    WishListScreen(categories: 'Wish List',),
   ];
   @override
   Widget build(BuildContext context) {
