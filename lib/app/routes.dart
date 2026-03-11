@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/forget_password_email_verified_screen.dart';
 import '../features/auth/presentation/screens/forget_password_otp_screen.dart';
+import '../features/catagory/presentation/screens/catagory_list_screen.dart';
 import '../shares/presentations/screen/main_nav_holder_screen.dart';
 
 class Routes {
@@ -12,29 +13,31 @@ class Routes {
     late Widget widget;
     switch (settings.name) {
       case SplashScreen.name:
-         widget=SplashScreen();
+        widget = SplashScreen();
         break;
-      case  SignUpScreen.name:
-        widget=SignUpScreen();
+      case SignUpScreen.name:
+        widget = SignUpScreen();
         break;
       case SignInScreen.name:
-        widget=SignInScreen();
+        widget = SignInScreen();
         break;
       case ForgetPasswordEmailVerified.name:
-        widget=ForgetPasswordEmailVerified();
+        widget = ForgetPasswordEmailVerified();
         break;
       case ForgetPasswordOtpScreen.name:
-        widget=ForgetPasswordOtpScreen();
+        widget = ForgetPasswordOtpScreen();
         break;
       case MainNavHolderScreen.name:
-        widget=MainNavHolderScreen();
+        widget = MainNavHolderScreen();
+        break;
+      case CatagoryListScreen.name:
+        widget = CatagoryListScreen();
         break;
       default:
-        widget=SplashScreen();
+        widget = SplashScreen();
         break;
     }
 
-    return MaterialPageRoute(builder: (context)=>widget
-    );
+    return MaterialPageRoute(builder: (context) => widget);
   }
 }

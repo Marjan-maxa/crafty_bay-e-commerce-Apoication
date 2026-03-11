@@ -7,5 +7,11 @@ void setIndex(int index){
   _selectedIndex=index;
   notifyListeners();
 }
+void moveToHome(){
+  setIndex(0);
+}
+void moveToCategoryList(){
+  setIndex(1);
+}
 
 }

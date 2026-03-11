@@ -4,6 +4,8 @@ import 'package:crafty_bay/shares/presentations/provider/main_nav_provider.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../features/catagory/presentation/screens/catagory_list_screen.dart';
+
 class MainNavHolderScreen extends StatefulWidget {
   const MainNavHolderScreen({super.key});
   static const String name = '/mainNavHolder';
@@ -15,7 +17,7 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
 
   final List<Widget> _screens=[
     HomeScreen(),
-    SizedBox(),
+    CatagoryListScreen(),
     SizedBox(),
     SizedBox(),
   ];

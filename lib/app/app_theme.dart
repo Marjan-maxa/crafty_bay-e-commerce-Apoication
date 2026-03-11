@@ -7,7 +7,8 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       progressIndicatorTheme: _indicatorThemeData,
       textTheme: _textTheme,
-      filledButtonTheme:_fillButtonTheme
+      filledButtonTheme:_fillButtonTheme,
+    appBarTheme: _appBarTheme
 
   );
   static ThemeData _darkThemeData = ThemeData(
@@ -15,7 +16,8 @@ class AppTheme {
       brightness: Brightness.dark,
       progressIndicatorTheme: _indicatorThemeData,
       textTheme: _textTheme,
-      filledButtonTheme:_fillButtonTheme
+      filledButtonTheme:_fillButtonTheme,
+    appBarTheme: _appBarTheme
   );
 
   static ThemeData get lightTheme => _lightThemeData;
@@ -34,6 +36,14 @@ class AppTheme {
               fontSize: 24,
               fontWeight: FontWeight.bold
           )
+      );
+  static AppBarTheme get _appBarTheme =>
+      AppBarTheme(
+         titleTextStyle: TextStyle(
+           fontSize: 18,
+           fontWeight: FontWeight.bold,
+           color: Colors.black54
+         )
       );
 
   static FilledButtonThemeData get _fillButtonTheme =>
