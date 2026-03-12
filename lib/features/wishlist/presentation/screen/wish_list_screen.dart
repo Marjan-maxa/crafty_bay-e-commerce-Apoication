@@ -27,7 +27,8 @@ class _WishListScreenState extends State<WishListScreen> {
           title:  Text(widget.categories),
           leading: IconButton(onPressed: (){
             context.read<MainNavProvider>().moveToHome();
-          }, icon: Icon(Icons.arrow_back_ios_new_outlined)),
+          }, icon: Icon(Icons.arrow_back_ios_new_outlined)
+          ),
       
         ),
         body: GridView.builder(
