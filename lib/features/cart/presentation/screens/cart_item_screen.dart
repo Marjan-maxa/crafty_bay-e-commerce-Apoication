@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../shares/presentations/provider/main_nav_provider.dart';
-import '../../../../shares/presentations/widgets/cart_items.dart';
+import '../../../auth/presentation/widgets/cart_items.dart';
 import '../../../../shares/presentations/widgets/checkout_price_cart.dart';
 
 class CartItemScreen extends StatefulWidget {

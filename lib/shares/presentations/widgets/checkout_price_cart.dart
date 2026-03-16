@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_color.dart';
+import '../../../app/app_constants.dart';
 
 class CheckOutPriceCard extends StatelessWidget {
   const CheckOutPriceCard({
@@ -17,7 +18,7 @@ class CheckOutPriceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
 
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(20),
 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,7 +29,7 @@ class CheckOutPriceCard extends StatelessWidget {
               const Text("Total Price",
                   style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 4),
-              Text("\$100,000.00",
+              Text("${Constants.takaSign}100,000.00",
                   style: TextStyle(
                     color: AppColor.themeColor,
                       fontSize: 18,
