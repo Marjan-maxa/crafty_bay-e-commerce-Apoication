@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_color.dart';
-import '../../../../app/app_constants.dart';
 import '../../../../shares/presentations/provider/main_nav_provider.dart';
 import '../../../home/presentation/widgets/home_carousel_slider.dart';
 
