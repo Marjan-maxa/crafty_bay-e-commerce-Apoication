@@ -1,10 +1,10 @@
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
+import 'package:crafty_bay/shares/presentations/widgets/increment_decrement_button.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../app/app_color.dart';
 import '../../../../app/app_constants.dart';
 import '../../../../app/assets_path.dart';
-import '../../../../shares/presentations/widgets/add_remove_payment_button.dart';
+
 
 class CartItems extends StatelessWidget {
   const CartItems({
@@ -14,7 +14,7 @@ class CartItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: Card(
 
         child: SingleChildScrollView(
@@ -38,6 +38,7 @@ class CartItems extends StatelessWidget {
                       width: 100,
                     ),
                     const SizedBox(width: 7),
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +46,7 @@ class CartItems extends StatelessWidget {
                           Text(
                             'New Year Special shows',
                             style: context.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w900,
                               color: Colors.black54,
                             ),
                           ),
@@ -57,7 +58,9 @@ class CartItems extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
+
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 "${Constants.takaSign}100",
@@ -67,16 +70,26 @@ class CartItems extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Spacer(),
-                              AddRemovePaymentButton(),
+
+                             IncrementDecrementButton(
+                                 initialValue: null,
+                               onChanged: (int value) {
+                                   print(value);
+                               },
+
+                             ),
                             ],
                           ),
                         ],
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.delete, color: Colors.grey),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.delete, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -91,4 +104,4 @@ class CartItems extends StatelessWidget {
   }
 }
 
-// module 30 er 4 no. video after start 20.13 again
+// module 30 er 4 no. video after start 49.00 again
