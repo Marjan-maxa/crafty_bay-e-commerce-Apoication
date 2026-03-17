@@ -8,6 +8,7 @@ import '../features/auth/presentation/screens/forget_password_otp_screen.dart';
 import '../features/cart/presentation/screens/cart_item_screen.dart';
 import '../features/catagory/presentation/screens/catagory_list_screen.dart';
 import '../features/product/presentation/screeen/product_list.dart';
+import '../features/product/presentation/screeen/products_details.dart';
 import '../shares/presentations/screen/main_nav_holder_screen.dart';
 
 class Routes {
@@ -41,7 +42,11 @@ class Routes {
         break;
       case CartItemScreen.name:
         final cartItem = settings.arguments as String;
-        widget = CartItemScreen(cartItem: 'Cart');
+        widget = CartItemScreen(cartItem: cartItem);
+        break;
+      case ProductsDetails.name:
+        final Productdetails = settings.arguments as String;
+        widget = ProductsDetails(Productdetails:Productdetails,);
         break;
       default:
         widget = SplashScreen();

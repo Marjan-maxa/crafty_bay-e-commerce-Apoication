@@ -17,31 +17,13 @@ class WishListScreen extends StatefulWidget {
 class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (_,_){
-        context.read<MainNavProvider>().moveToHome();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title:  Text(widget.categories),
-          leading: IconButton(onPressed: (){
-            context.read<MainNavProvider>().moveToHome();
-          }, icon: Icon(Icons.arrow_back_ios_new_outlined)
-          ),
-      
-        ),
-        body: GridView.builder(
-            itemCount: 20,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      
-                mainAxisSpacing: 8,
-                crossAxisCount: 3),
-            itemBuilder: (context,index){
-              return  FittedBox(child: ProductCart());
-            }),
-      ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.categories),
+      )
+
     );
+
   }
 }
 
