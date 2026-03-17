@@ -42,6 +42,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
       },
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title:  Text(widget.Productdetails,),
           leading: IconButton(onPressed: (){
             context.read<MainNavProvider>().moveToHome();
@@ -216,6 +217,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   'Description',
+                                  overflow: TextOverflow.ellipsis,
                                   style: context.textTheme.bodyLarge?.copyWith(
                                     fontWeight: FontWeight.w600,
                                   ),
