@@ -1,4 +1,5 @@
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
+import 'package:crafty_bay/features/product/presentation/screeen/product_review.dart';
 import 'package:crafty_bay/shares/presentations/widgets/checkout_price_cart.dart';
 import 'package:crafty_bay/shares/presentations/widgets/increment_decrement_button.dart';
 import 'package:flutter/material.dart';
@@ -95,16 +96,12 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                                 Text('4.5', overflow: TextOverflow.ellipsis),
                                               ],
                                             ),
-                                            SizedBox(width: 4),
+
                           
-                                            Text(
-                                              'Reviews',
-                                              style: TextStyle(
-                                                color: AppColor.themeColor,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            SizedBox(width: 4),
+                                           TextButton(onPressed: (){
+                                             Navigator.pushNamed(context, ProductReview.name);
+                                           }, child: Text('Review')),
+
                           
                                             Container(
                                               padding: EdgeInsets.all(3),
