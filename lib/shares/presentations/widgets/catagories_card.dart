@@ -16,7 +16,7 @@ class CatagoriesCard extends StatelessWidget {
         Navigator.pushNamed(context, ProductList.name,arguments: 'Electronics');
       },
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
           Card(
             color: AppColor.themeColor.withAlpha(20),
