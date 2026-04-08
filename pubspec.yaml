@@ -24,12 +24,14 @@ dependencies:
   flutter_svg: ^2.2.3
   intl: ^0.20.2
   provider: ^6.1.5+1
-  shared_preferences:
+
   pin_code_fields: 9.1.0
   timer_count_down: ^2.2.2
   carousel_slider: ^5.1.2
   http: ^1.6.0
   logger: ^2.7.0
+  email_validator: ^3.0.0
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:

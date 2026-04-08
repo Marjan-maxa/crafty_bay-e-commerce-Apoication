@@ -2,7 +2,9 @@ import 'package:crafty_bay/core/network_caller/network_caller.dart';
 //Best Practise=> Service Locator/ Dependency Injection Manager
 NetworkCaller getNetworkCaller()
 {
-  return NetworkCaller(headers: ()=> {  },
+  return NetworkCaller(headers: ()=> {
+    'content-type':'application/json'
+  },
     onUnauthorized: () {
     // log out app
       // clear data

@@ -3,13 +3,14 @@ import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:crafty_bay/features/auth/presentation/screens/verify_otp_screen.dart';
 
 import 'package:crafty_bay/features/auth/presentation/widgets/logo_widget.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 
-import 'forget_password_otp_screen.dart';
+
 
 class ForgetPasswordEmailVerified extends StatefulWidget {
   ForgetPasswordEmailVerified({super.key});
@@ -109,7 +110,7 @@ class _SignUpState extends State<ForgetPasswordEmailVerified> {
     Navigator.pushNamed(context, SignUpScreen.name);
   }
   void _onTapForgetPasswordNextButton(){
-    Navigator.pushNamed(context, ForgetPasswordOtpScreen.name);
+    Navigator.pushNamed(context, VerifyOtpScreen.name);
   }
 
 

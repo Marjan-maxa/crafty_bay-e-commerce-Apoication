@@ -50,16 +50,16 @@ class NetworkCaller {
 
   Future<NetWorkResponse> postRequest(
       String url,
-      Map<String, dynamic> body,
+      {Map<String, dynamic>? body}
       ) async {
     try {
       final Uri uri = Uri.parse(url);
-      print(url);
+      _loggerRequest(url, body: body);
       final Response response = await post(uri,
         body: jsonEncode(body),
         headers: headers(),
       );
-      print(response.body);
+    _loggerResponse(response);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final decodedJson = jsonDecode(response.body);
         return NetWorkResponse(
