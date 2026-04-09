@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
 import 'package:crafty_bay/features/auth/data/models/OtpParams.dart';
+import 'package:crafty_bay/features/auth/presentation/widgets/center_indicator.dart';
 import 'package:crafty_bay/features/auth/presentation/widgets/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -23,7 +24,7 @@ class VerifyOtpScreen extends StatefulWidget {
 class _SignUpState extends State<VerifyOtpScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   final PinInputController _otpController = PinInputController();
-  final VerifyOtpProvider _otpProvider=VerifyOtpProvider();
+  final VerifyOtpProvider _otpProvider = VerifyOtpProvider();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +108,17 @@ class _SignUpState extends State<VerifyOtpScreen> {
                   ),
 
                   const SizedBox(height: 16),
-                  FilledButton(onPressed:tapVerifyButton, child: Text('Verify')),
+                  Consumer<VerifyOtpProvider>(
+                    builder: (context,_,_) {
+                      if (_otpProvider.isotpProgress) {
+                        return CenterIndicator();
+                      }
+                      return FilledButton(
+                        onPressed: tapVerifyButton,
+                        child: Text('Verify'),
+                      );
+                    }
+                  ),
 
                   const SizedBox(height: 16),
 
@@ -120,8 +131,9 @@ class _SignUpState extends State<VerifyOtpScreen> {
       ),
     );
   }
-  void tapVerifyButton(){
-    if(_otpController.text.length==4){
+
+  void tapVerifyButton() {
+    if (_otpController.text.length == 4) {
       VerifyOTP();
     }
   }
@@ -131,13 +143,18 @@ class _SignUpState extends State<VerifyOtpScreen> {
       email: widget.email,
       otP: _otpController.text,
     );
-    final bool isSuccess=await _otpProvider.OTp(otpparams);
-    if(isSuccess){
-      Navigator.pushNamedAndRemoveUntil(context, MainNavHolderScreen.name, (predicate)=>false);
-    }else{
-           SnakBarMessage(context, _otpProvider.errorMessage);
+    final bool isSuccess = await _otpProvider.OTp(otpparams);
+    if (isSuccess) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        MainNavHolderScreen.name,
+        (predicate) => false,
+      );
+    } else {
+      SnakBarMessage(context, _otpProvider.errorMessage);
     }
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -145,4 +162,3 @@ class _SignUpState extends State<VerifyOtpScreen> {
     _otpController.dispose();
   }
 }
-

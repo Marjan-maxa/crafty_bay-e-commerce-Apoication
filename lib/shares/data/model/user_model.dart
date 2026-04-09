@@ -16,7 +16,7 @@ class UserModel {
   final String lastName;
   final String email;
   final String phone;
-  final String avatarUrl;
+  final String? avatarUrl;
   final String city;
   UserModel({
     required this.id,
@@ -24,7 +24,7 @@ class UserModel {
     required this.lastName,
     required this.email,
     required this.phone,
-    required this.avatarUrl,
+     this.avatarUrl,
     required this.city,
   });
 
