@@ -5,7 +5,7 @@ import 'package:crafty_bay/features/wishlist/presentation/screen/wish_list_scree
 import 'package:crafty_bay/shares/presentations/provider/main_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../../features/auth/presentation/provider/home_slider_provider.dart';
 import '../../../features/catagory/presentation/screens/catagory_list_screen.dart';
 
 class MainNavHolderScreen extends StatefulWidget {
@@ -23,8 +23,18 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
     CartItemScreen(cartItem: 'Cart'),
     WishListScreen(categories: 'Wish List',),
   ];
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_)async{
+      await context.read<HomeSliderProvider>().getHomeSlider();
+    });
+  }
+  @override
+
   @override
   Widget build(BuildContext context) {
+
     return Consumer<MainNavProvider>(
       builder: (context,mainNavProvider,_) {
         return Scaffold(

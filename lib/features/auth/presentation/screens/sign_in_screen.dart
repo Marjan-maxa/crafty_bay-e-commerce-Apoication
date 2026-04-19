@@ -57,7 +57,7 @@ class _SignUpState extends State<SignInScreen> {
                     TextFormField(
                       controller: _emailController,
                       textInputAction: TextInputAction.next,
-                      obscureText: true,
+
                       decoration: InputDecoration(
                         hintText: 'E-mail',
                         hintStyle: TextStyle(color: Colors.grey),
@@ -136,7 +136,9 @@ class _SignUpState extends State<SignInScreen> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/SignUp');
+                          },
                           child: Text('Sign Up'),
                         ),
                       ],

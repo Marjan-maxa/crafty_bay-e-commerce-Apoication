@@ -27,103 +27,105 @@ class _SignUpState extends State<VerifyOtpScreen> {
   final VerifyOtpProvider _otpProvider = VerifyOtpProvider();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Form(
-              key: _globalKey,
-              child: Column(
-                children: [
-                  logo_app(width: 110, height: 110),
-                  const SizedBox(height: 16),
-                  Text(
-                    context.l10n.fogetPasswordOtp,
-                    style: context.textTheme.titleLarge,
-                  ),
-                  Text(
-                    context.l10n.fogetPasswordOtpDetails,
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: Colors.grey,
+    return ChangeNotifierProvider.value(
+      value: _otpProvider,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: _globalKey,
+                child: Column(
+                  children: [
+                    logo_app(width: 110, height: 110),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.l10n.fogetPasswordOtp,
+                      style: context.textTheme.titleLarge,
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  ChangeNotifierProvider.value(
-                    value: _otpProvider,
-                    child: MaterialPinField(
-                      pinController: _otpController,
-                      theme: MaterialPinTheme(
-                        // Shape
-                        shape: MaterialPinShape.outlined,
-
-                        spacing: 8,
-                        borderRadius: BorderRadius.circular(12),
-
-                        // Border
-                        borderWidth: 1.5,
-                        focusedBorderWidth: 2.0,
-                        borderColor: Colors.grey,
-                        focusedBorderColor: Colors.teal,
-                        filledBorderColor: AppColor.themeColor,
-                        errorColor: Colors.red,
-                        completeFillColor: Colors.transparent,
-                        completeBorderColor: AppColor.themeColor,
-
-                        // Fill
-                        fillColor: Colors.grey[100],
-                        focusedFillColor: Colors.blue[50],
-                        filledFillColor: Colors.white,
-
-                        // Text
-                        textStyle: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textGradient: LinearGradient(
-                          colors: [Colors.blue, Colors.purple],
-                        ),
-
-                        // Cursor
-                        showCursor: true,
-                        cursorColor: Colors.blue,
-                        cursorWidth: 2,
-                        animateCursor: true,
-
-                        // Animation
-                        entryAnimation: MaterialPinAnimation.scale,
-                        animationDuration: Duration(milliseconds: 150),
-                        animationCurve: Curves.easeOut,
-
-                        // Error
-                        enableErrorShake: true,
-                        errorAnimationDuration: Duration(milliseconds: 500),
+                    Text(
+                      context.l10n.fogetPasswordOtpDetails,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        color: Colors.grey,
                       ),
-                      length: 4,
-                      keyboardType: TextInputType.number,
-
-                      onCompleted: (pin) => print('PIN: $pin'),
-                      onChanged: (value) => print('Changed: $value'),
                     ),
-                  ),
 
-                  const SizedBox(height: 16),
-                  Consumer<VerifyOtpProvider>(
-                    builder: (context,_,_) {
-                      if (_otpProvider.isotpProgress) {
-                        return CenterIndicator();
+                    MaterialPinField(
+                        pinController: _otpController,
+                        theme: MaterialPinTheme(
+                          // Shape
+                          shape: MaterialPinShape.outlined,
+
+                          spacing: 8,
+                          borderRadius: BorderRadius.circular(12),
+
+                          // Border
+                          borderWidth: 1.5,
+                          focusedBorderWidth: 2.0,
+                          borderColor: Colors.grey,
+                          focusedBorderColor: Colors.teal,
+                          filledBorderColor: AppColor.themeColor,
+                          errorColor: Colors.red,
+                          completeFillColor: Colors.transparent,
+                          completeBorderColor: AppColor.themeColor,
+
+                          // Fill
+                          fillColor: Colors.grey[100],
+                          focusedFillColor: Colors.blue[50],
+                          filledFillColor: Colors.white,
+
+                          // Text
+                          textStyle: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textGradient: LinearGradient(
+                            colors: [Colors.blue, Colors.purple],
+                          ),
+
+                          // Cursor
+                          showCursor: true,
+                          cursorColor: Colors.blue,
+                          cursorWidth: 2,
+                          animateCursor: true,
+
+                          // Animation
+                          entryAnimation: MaterialPinAnimation.scale,
+                          animationDuration: Duration(milliseconds: 150),
+                          animationCurve: Curves.easeOut,
+
+                          // Error
+                          enableErrorShake: true,
+                          errorAnimationDuration: Duration(milliseconds: 500),
+                        ),
+                        length: 4,
+                        keyboardType: TextInputType.number,
+
+                        onCompleted: (pin) => print('PIN: $pin'),
+                        onChanged: (value) => print('Changed: $value'),
+                      ),
+
+                    const SizedBox(height: 18),
+
+                    const SizedBox(height: 16),
+                    Consumer<VerifyOtpProvider>(
+                      builder: (context,_,_) {
+                        if (_otpProvider.isotpProgress) {
+                          return CenterIndicator();
+                        }
+                        return FilledButton(
+                          onPressed: tapVerifyButton,
+                          child: Text('Verify'),
+                        );
                       }
-                      return FilledButton(
-                        onPressed: tapVerifyButton,
-                        child: Text('Verify'),
-                      );
-                    }
-                  ),
+                    ),
 
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                  ResendOtpSection(),
-                ],
+                    ResendOtpSection(),
+                  ],
+                ),
               ),
             ),
           ),
