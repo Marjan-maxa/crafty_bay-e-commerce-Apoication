@@ -3,4 +3,5 @@ class AssetsPath{
   static String logo_Path='$_basePath/logoSvg.svg';
   static String logo_nav_Path='$_basePath/logo_nav_svg.svg';
   static String productPath='$_basePath/shoe.png';
+  static String noImagePath='$_basePath/no image.jpg';
 }
