@@ -1,3 +1,5 @@
+import 'package:crafty_bay/features/product/presentation/models/product_list_model.dart';
+import 'package:crafty_bay/shares/presentations/widgets/app_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_color.dart';
@@ -7,9 +9,9 @@ import '../../../features/product/presentation/screeen/products_details.dart';
 
 class ProductCart extends StatelessWidget {
   const ProductCart({
-    super.key,
+    super.key, required this.productListModel,
   });
-
+final ProductListModel productListModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -44,14 +46,14 @@ class ProductCart extends StatelessWidget {
                     ),
                   ),
 
-                  child: Image.asset(AssetsPath.productPath,fit: BoxFit.contain,),
+                  child: AppNetworkImage(url: _getImages(productListModel.images)),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Nike A34RF -New Edition 2026 Alfa',maxLines: 1,style: TextStyle(
+                      Text(productListModel.title,maxLines: 1,style: TextStyle(
                         fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Colors.grey.shade800,
@@ -64,7 +66,7 @@ class ProductCart extends StatelessWidget {
                     spacing: 7,
                         children: [
                           Text(
-                            '${Constants.takaSign}1200',
+                            '${Constants.takaSign}${productListModel.currentPrice}',
                             style: TextStyle(
                               color: AppColor.themeColor,
                               fontWeight: FontWeight.w500,
@@ -74,7 +76,7 @@ class ProductCart extends StatelessWidget {
                           Wrap(
                             children: [
                               Icon(Icons.star, color: Colors.amber, size: 16),
-                              Text('4.5', overflow: TextOverflow.ellipsis),
+                              Text('${productListModel.rating}', overflow: TextOverflow.ellipsis),
                             ],
                           ),
                           SizedBox(width: 4),
@@ -102,5 +104,8 @@ class ProductCart extends StatelessWidget {
         ),
       ),
     );
+  }
+  String _getImages(List<String> urls) {
+    return urls.isNotEmpty ? urls.first : '';
   }
 }

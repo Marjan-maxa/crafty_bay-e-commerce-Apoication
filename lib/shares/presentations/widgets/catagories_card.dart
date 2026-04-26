@@ -3,7 +3,7 @@ import 'package:crafty_bay/shares/presentations/widgets/app_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_color.dart';
-import '../../../features/product/presentation/screeen/product_list.dart';
+import '../../../features/product/presentation/screeen/product_list_screen.dart';
 import '../../data/model/category_list_model.dart';
 
 class CatagoriesCard extends StatelessWidget {
@@ -16,7 +16,7 @@ class CatagoriesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, ProductList.name,arguments: categoryModel.title);
+        Navigator.pushNamed(context, ProductList.name,arguments: categoryModel);
       },
       child: Column(
         mainAxisSize: .min,

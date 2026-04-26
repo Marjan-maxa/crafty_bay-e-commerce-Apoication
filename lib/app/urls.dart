@@ -7,4 +7,7 @@ class Urls {
   static getcategoryUrl(int count, int page) {
     return "$_baseUrl/categories?page=$page&count=$count";
   }
+  static getproductUrl(int count, int page) {
+    return "$_baseUrl/products?page=$page&count=$count";
+  }
 }

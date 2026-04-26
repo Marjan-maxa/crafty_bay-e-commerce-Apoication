@@ -15,7 +15,7 @@ class HomeProductList extends StatelessWidget {
 
         itemCount: 10,
         scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index)=>const ProductCart(),
+        itemBuilder: (BuildContext context, int index)=>const SizedBox(),
         separatorBuilder: (BuildContext context, int index)=>const SizedBox(),
 
 

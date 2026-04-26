@@ -38,3 +38,4 @@ class HomeCtegoryList extends StatelessWidget {
     return length > 10 ? 10 : length;
   }
 }
+// 1:3:04
