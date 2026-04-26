@@ -2,6 +2,7 @@ import 'package:crafty_bay/app/app_color.dart';
 import 'package:crafty_bay/features/cart/presentation/screens/cart_item_screen.dart';
 import 'package:crafty_bay/features/home/presentation/screen/home_screen.dart';
 import 'package:crafty_bay/features/wishlist/presentation/screen/wish_list_screen.dart';
+import 'package:crafty_bay/shares/presentations/provider/category_list_provider.dart';
 import 'package:crafty_bay/shares/presentations/provider/main_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +27,9 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_)async{
-      await context.read<HomeSliderProvider>().getHomeSlider();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+       context.read<HomeSliderProvider>().getHomeSlider();
+       context.read<CategoryListProvider>().getCategory();
     });
   }
   @override
