@@ -41,7 +41,7 @@ class _CartItemScreenState extends State<CartItemScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            CheckOutPriceCard(cartItem: 'Cart'),
+            CheckOutPriceCard(cartItem: widget.cartItem, price: '0.00',),
 
           ],
         ),

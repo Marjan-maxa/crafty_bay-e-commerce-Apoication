@@ -10,7 +10,7 @@ import '../features/cart/presentation/screens/cart_item_screen.dart';
 import '../features/catagory/presentation/screens/catagory_list_screen.dart';
 import '../features/product/presentation/screeen/product_list_screen.dart';
 import '../features/product/presentation/screeen/product_review.dart';
-import '../features/product/presentation/screeen/products_details.dart';
+import '../features/product/presentation/screeen/products_details_screen.dart';
 import '../shares/presentations/screen/main_nav_holder_screen.dart';
 
 class Routes {
@@ -47,9 +47,9 @@ class Routes {
         final cartItem = settings.arguments as String;
         widget = CartItemScreen(cartItem: cartItem);
         break;
-      case ProductsDetails.name:
-        final Productdetails = settings.arguments as String;
-        widget = ProductsDetails(Productdetails:Productdetails,);
+      case ProductsDetailsScreen.name:
+        final productId = settings.arguments as String;
+        widget = ProductsDetailsScreen(productId: productId);
         break;
       case ProductReview.name:
         widget = ProductReview();

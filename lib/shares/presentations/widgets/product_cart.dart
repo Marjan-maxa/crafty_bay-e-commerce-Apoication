@@ -1,12 +1,10 @@
 import 'package:crafty_bay/features/product/presentation/models/product_list_model.dart';
+import 'package:crafty_bay/features/product/presentation/screeen/products_details_screen.dart';
 import 'package:crafty_bay/shares/presentations/widgets/app_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_color.dart';
 import '../../../app/app_constants.dart';
-import '../../../app/assets_path.dart';
-import '../../../features/product/presentation/screeen/products_details.dart';
-
 class ProductCart extends StatelessWidget {
   const ProductCart({
     super.key, required this.productListModel,
@@ -16,7 +14,7 @@ final ProductListModel productListModel;
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, ProductsDetails.name,arguments: 'Product Details');
+        Navigator.pushNamed(context, ProductsDetailsScreen.name, arguments: productListModel.id);
       },
       child: SizedBox(
         width: 180,

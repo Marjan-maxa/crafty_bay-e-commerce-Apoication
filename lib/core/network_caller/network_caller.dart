@@ -34,7 +34,7 @@ class NetworkCaller {
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
-          errorMesssage: decodedJson['message'],
+          errorMesssage: decodedJson['message'] ?? decodedJson['msg'] ?? 'Something went wrong!',
         );
       }
     } on Exception catch (e) {
@@ -78,7 +78,7 @@ class NetworkCaller {
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
-          errorMesssage: decodedJson['message'],
+          errorMesssage: decodedJson['message'] ?? decodedJson['msg'] ?? 'Something went wrong!',
         );
       }
     } on Exception catch (e) {
@@ -121,7 +121,7 @@ class NetworkCaller {
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
-          errorMesssage: decodedJson['message'],
+          errorMesssage: decodedJson['message'] ?? decodedJson['msg'] ?? 'Something went wrong!',
         );
       }
     } on Exception catch (e) {
@@ -165,7 +165,7 @@ class NetworkCaller {
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
-          errorMesssage: decodedJson['message'],
+          errorMesssage: decodedJson['message'] ?? decodedJson['msg'] ?? 'Something went wrong!',
         );
       }
     } on Exception catch (e) {
@@ -209,7 +209,7 @@ class NetworkCaller {
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
-          errorMesssage: decodedJson['message'],
+          errorMesssage: decodedJson['message'] ?? decodedJson['msg'] ?? 'Something went wrong!',
         );
       }
     } on Exception catch (e) {

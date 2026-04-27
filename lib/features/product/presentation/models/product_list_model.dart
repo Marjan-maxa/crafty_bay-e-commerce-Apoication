@@ -15,7 +15,7 @@ class ProductListModel {
 
   factory ProductListModel.fromJson(Map<String, dynamic> json) {
     return ProductListModel(
-      id: json['_id'].toString() ?? '',
+      id: (json['_id']).toString(),
       title: json['title'].toString() ?? 'no title',
       images: List.from(json['photos']),
       rating: json['rating']?.toString() ?? '4.5',

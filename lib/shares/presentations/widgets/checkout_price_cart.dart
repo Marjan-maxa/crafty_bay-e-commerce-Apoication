@@ -5,8 +5,10 @@ import '../../../app/app_constants.dart';
 
 class CheckOutPriceCard extends StatelessWidget {
   const CheckOutPriceCard({
-    super.key, required String cartItem,
+    super.key, required this.cartItem, required this.price,
   });
+  final String cartItem;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CheckOutPriceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
 
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,7 +31,7 @@ class CheckOutPriceCard extends StatelessWidget {
               const Text("Total Price",
                   style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 4),
-              Text("${Constants.takaSign}100,000.00",
+              Text("${Constants.takaSign}$price",
                   style: TextStyle(
                     color: AppColor.themeColor,
                       fontSize: 18,
@@ -47,7 +49,7 @@ class CheckOutPriceCard extends StatelessWidget {
                     )
                 )
                 ,
-                onPressed: (){}, child: Text('Checkout')),
+                onPressed: (){}, child: Text(cartItem)),
           )
         ],
       ),

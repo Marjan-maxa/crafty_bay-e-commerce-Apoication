@@ -43,6 +43,7 @@ class ProductListProvider extends ChangeNotifier {
       Urls.getproductUrl(_pagecount, _currentPage),
     );
     if (response.isSuccess) {
+      print("PRODUCT KEYS: ${response.body!['data']['results'][0].keys}");
       List<ProductListModel> products = [];
       _lastPage = response.body!['data']['last_page'];
       for (Map<String, dynamic> product in response.body!['data']['results']) {
