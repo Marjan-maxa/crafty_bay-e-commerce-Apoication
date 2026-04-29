@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_color.dart';
 import '../../../../app/controller/auth_controller.dart';
+import '../../../../shares/presentations/widgets/show_snakbar_Message.dart';
 import '../../../auth/presentation/screens/sign_in_screen.dart';
 import '../../../home/presentation/widgets/product_cerosol_image.dart';
 
@@ -306,11 +307,10 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   }
 
   Future<void> _onTapAddToCart() async {
-    if(await AuthController.isLoggedIn()==false){
+    if (await AuthController.isLoggedIn() == false) {
       Navigator.pushNamed(context, SignInScreen.name);
       return;
     }
-
 
     AddToCartParams params = AddToCartParams(
       productId: widget.productId,
@@ -323,10 +323,8 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Added to cart successfully!')),
       );
-    } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to add to cart. Try again.')),
-      );
+    } else {
+      SnakBarMessage(context, context.read<AddToCartProvider>().errorMessage ?? 'Failed to add to cart');
     }
   }
 }

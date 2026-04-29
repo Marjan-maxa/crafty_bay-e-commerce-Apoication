@@ -281,7 +281,7 @@ class _SignUpState extends State<SignUpScreen> {
         arguments: _emailController.text.trim(),
       );
     } else {
-      SnakBarMessage(context, _signupProvider.errorMessage);
+      SnakBarMessage(context, _signupProvider.errorMessage!);
     }
   }
 

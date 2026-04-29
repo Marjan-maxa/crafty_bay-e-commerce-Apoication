@@ -153,7 +153,7 @@ class _SignUpState extends State<VerifyOtpScreen> {
         (predicate) => false,
       );
     } else {
-      SnakBarMessage(context, _otpProvider.errorMessage);
+      SnakBarMessage(context, _otpProvider.errorMessage!);
     }
   }
 

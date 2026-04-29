@@ -11,12 +11,21 @@ class AddToCartParams {
     required this.quantity,
   });
 
+  factory AddToCartParams.fromJson(Map<String, dynamic> json) {
+    return AddToCartParams(
+      productId: json['product'] ?? '',
+      color: json['color'] ?? '',
+      size: json['size'] ?? '',
+      quantity: json['quantity'] ?? 1,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
-      "product_id": productId,
+      "product": productId,
       "color": color,
       "size": size,
-      "qty": quantity,
+      "quantity": quantity,
     };
   }
 }

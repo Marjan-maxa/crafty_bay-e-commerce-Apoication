@@ -37,7 +37,6 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           errorMesssage:
-              decodedJson['message'] ??
               decodedJson['msg'] ??
               'Something went wrong!',
         );
@@ -56,10 +55,12 @@ class NetworkCaller {
   Future<NetWorkResponse> postRequest(
     String url, {
     Map<String, dynamic>? body,
+        bool FromLoggedIn=false
   }) async {
     try {
       final Uri uri = Uri.parse(url);
       _loggerRequest(url, body: body);
+
       final Response response = await post(
         uri,
         body: jsonEncode(body),
@@ -74,7 +75,10 @@ class NetworkCaller {
           body: decodedJson,
         );
       } else if (response.statusCode == 401) {
-        onUnauthorized();
+        if(!FromLoggedIn){
+          onUnauthorized();
+        }
+
         return NetWorkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
@@ -86,7 +90,6 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           errorMesssage:
-              decodedJson['message'] ??
               decodedJson['msg'] ??
               'Something went wrong!',
         );
@@ -134,7 +137,6 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           errorMesssage:
-              decodedJson['message'] ??
               decodedJson['msg'] ??
               'Something went wrong!',
         );
@@ -182,7 +184,6 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           errorMesssage:
-              decodedJson['message'] ??
               decodedJson['msg'] ??
               'Something went wrong!',
         );
@@ -230,7 +231,6 @@ class NetworkCaller {
           statusCode: response.statusCode,
           isSuccess: false,
           errorMesssage:
-              decodedJson['message'] ??
               decodedJson['msg'] ??
               'Something went wrong!',
         );

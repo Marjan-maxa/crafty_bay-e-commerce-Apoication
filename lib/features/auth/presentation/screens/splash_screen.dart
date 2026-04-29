@@ -1,4 +1,5 @@
 import 'package:crafty_bay/app/assets_path.dart';
+import 'package:crafty_bay/app/controller/auth_controller.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:crafty_bay/shares/presentations/screen/main_nav_holder_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void>moveToNextScreen()async {
-   await Future.delayed(Duration(seconds: 3));
+   await Future.delayed(Duration(seconds: 2));
+  await AuthController.loadUserData();
     Navigator.pushReplacementNamed(context, MainNavHolderScreen.name );
   }
 

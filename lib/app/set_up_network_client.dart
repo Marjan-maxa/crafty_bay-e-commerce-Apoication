@@ -6,8 +6,12 @@ import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dar
 //Best Practise=> Service Locator/ Dependency Injection Manager
 NetworkCaller getNetworkCaller() {
   return NetworkCaller(
-    headers: () => {
-      'content-type': 'application/json',
+    headers: () {
+      final headers = {'content-type': 'application/json'};
+      if (AuthController.accessToken != null) {
+        headers['token'] = '${AuthController.accessToken}';
+      }
+      return headers;
     },
     onUnauthorized: () async {
       // log out app

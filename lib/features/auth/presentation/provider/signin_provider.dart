@@ -23,6 +23,7 @@ class SignInProvider extends ChangeNotifier{
     final NetWorkResponse response=await getNetworkCaller().postRequest(
       Urls.signInUrl,
       body: params.toJson(),
+      FromLoggedIn: true
     );
     if(response.isSuccess){
       UserModel userModel=UserModel.fromJson(response.body!['data']['user']);

@@ -171,7 +171,7 @@ class _SignUpState extends State<SignInScreen> {
           (predicate) => false,
         );
       } else {
-        SnakBarMessage(context, _signInProvider.errorMessage);
+        SnakBarMessage(context, _signInProvider.errorMessage!);
       }
     }
   }
