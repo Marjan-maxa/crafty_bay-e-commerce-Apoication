@@ -2,6 +2,7 @@ import 'package:crafty_bay/app/provider/localization_provider.dart';
 import 'package:crafty_bay/app/provider/theme_provider.dart';
 import 'package:crafty_bay/app/routes.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/splash_screen.dart';
+import 'package:crafty_bay/features/product/provider/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/product/provider/product_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,7 +18,7 @@ import 'app_theme.dart';
 
 class CraftyBayApp extends StatelessWidget {
   const CraftyBayApp({super.key});
-
+static GlobalKey<NavigatorState>navigatorKey=GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -27,13 +28,15 @@ class CraftyBayApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>MainNavProvider()),
         ChangeNotifierProvider(create: (_)=>HomeSliderProvider()),
         ChangeNotifierProvider(create: (_)=>CategoryListProvider()),
-        ChangeNotifierProvider(create: (_) =>ProductDetailsProvider())
+        ChangeNotifierProvider(create: (_) =>ProductDetailsProvider()),
+        ChangeNotifierProvider(create: (_) =>AddToCartProvider()),
       ],
       child: Consumer<LocalizationProvider>(
         builder: (context,localizationProvider,child) {
           return Consumer<ThemeProvider>(
             builder: (context,themeProvider,_) {
               return MaterialApp(
+                navigatorKey: navigatorKey,
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,
                 themeMode: themeProvider.themeMode,

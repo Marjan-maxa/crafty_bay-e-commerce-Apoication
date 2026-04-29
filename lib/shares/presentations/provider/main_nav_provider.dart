@@ -7,6 +7,7 @@ void setIndex(int index){
   _selectedIndex=index;
   notifyListeners();
 }
+bool isCheckUserLoggdIn(int index)=>index==2 ||index==3;
 void moveToHome(){
   setIndex(0);
 }

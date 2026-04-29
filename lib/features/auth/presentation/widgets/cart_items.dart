@@ -72,9 +72,11 @@ class CartItems extends StatelessWidget {
                               ),
 
                              IncrementDecrementButton(
-                                 initialValue: null,
+                               initialValue: 1,
+                               maxValue: 5,
+
                                onChanged: (int value) {
-                                   print(value);
+                                  // TODO: Update cart item quantity
                                },
 
                              ),

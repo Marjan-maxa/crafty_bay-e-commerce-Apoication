@@ -1,21 +1,19 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:crafty_bay/app/app_constants.dart';
 import 'package:crafty_bay/app/extentions/applocalizations_extentions.dart';
+import 'package:crafty_bay/features/product/data/models/add_to_cart_params.dart';
 import 'package:crafty_bay/features/product/presentation/screeen/product_review.dart';
+import 'package:crafty_bay/features/product/provider/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/product/provider/product_details_provider.dart';
-import 'package:crafty_bay/shares/presentations/widgets/app_network_image.dart';
 import 'package:crafty_bay/shares/presentations/widgets/checkout_price_cart.dart';
 import 'package:crafty_bay/shares/presentations/widgets/increment_decrement_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_color.dart';
+import '../../../../app/controller/auth_controller.dart';
+import '../../../auth/presentation/screens/sign_in_screen.dart';
 import '../../../home/presentation/widgets/product_cerosol_image.dart';
 
 class ProductsDetailsScreen extends StatefulWidget {
-  const ProductsDetailsScreen({
-    super.key,
-    required this.productId,
-  });
+  const ProductsDetailsScreen({super.key, required this.productId});
   final String productId;
   static const String name = '/productsDetails';
 
@@ -27,6 +25,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   String? _selectedColor;
   String? _selectedSize;
   String? _lastProductId;
+  int _quantity = 1;
 
   @override
   void initState() {
@@ -46,7 +45,6 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
         title: const Text('Product Details'),
       ),
       body: Consumer<ProductDetailsProvider>(
-
         builder: (context, provider, child) {
           if (provider.getProductDetailsProgress) {
             return const Center(child: CircularProgressIndicator());
@@ -68,7 +66,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
           }
 
           final product = provider.productDetails!;
-          
+
           // Reset selection if product id changes
           if (_lastProductId != product.id) {
             _selectedColor = product.colors.firstOrNull;
@@ -146,8 +144,12 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                   ),
                                 ),
                                 IncrementDecrementButton(
-                                  onChanged: (int value) {},
-                                  initialValue: 1,
+                                  maxValue: product.quantity,
+                                  onChanged: (int value) {
+                                    setState(() {
+                                      _quantity = value;
+                                    });
+                                  },
                                 ),
                               ],
                             ),
@@ -165,7 +167,8 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                 child: Row(
                                   children: product.colors.map((colorName) {
                                     final isSelected =
-                                        _selectedColor?.toLowerCase() == colorName.toLowerCase();
+                                        _selectedColor?.toLowerCase() ==
+                                        colorName.toLowerCase();
                                     return GestureDetector(
                                       onTap: () {
                                         setState(() {
@@ -173,8 +176,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                         });
                                       },
                                       child: Container(
-                                        margin:
-                                            const EdgeInsets.only(right: 12),
+                                        margin: const EdgeInsets.only(
+                                          right: 12,
+                                        ),
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 12,
                                           vertical: 8,
@@ -183,10 +187,14 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                           color: isSelected
                                               ? AppColor.themeColor
                                               : Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border:
-                                              Border.all(color: isSelected ? AppColor.themeColor : Colors.grey),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(
+                                            color: isSelected
+                                                ? AppColor.themeColor
+                                                : Colors.grey,
+                                          ),
                                         ),
                                         child: Text(
                                           colorName,
@@ -194,7 +202,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                             color: isSelected
                                                 ? Colors.white
                                                 : Colors.black,
-                                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                            fontWeight: isSelected
+                                                ? FontWeight.bold
+                                                : FontWeight.normal,
                                           ),
                                         ),
                                       ),
@@ -216,7 +226,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: product.sizes.map((size) {
-                                    final isSelected = _selectedSize?.toLowerCase() == size.toLowerCase();
+                                    final isSelected =
+                                        _selectedSize?.toLowerCase() ==
+                                        size.toLowerCase();
                                     return GestureDetector(
                                       onTap: () {
                                         setState(() {
@@ -224,8 +236,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                         });
                                       },
                                       child: Container(
-                                        margin:
-                                            const EdgeInsets.only(right: 12),
+                                        margin: const EdgeInsets.only(
+                                          right: 12,
+                                        ),
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 12,
                                           vertical: 8,
@@ -234,10 +247,14 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                           color: isSelected
                                               ? AppColor.themeColor
                                               : Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border:
-                                              Border.all(color: isSelected ? AppColor.themeColor : Colors.grey),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(
+                                            color: isSelected
+                                                ? AppColor.themeColor
+                                                : Colors.grey,
+                                          ),
                                         ),
                                         child: Text(
                                           size,
@@ -245,7 +262,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                             color: isSelected
                                                 ? Colors.white
                                                 : Colors.black,
-                                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                            fontWeight: isSelected
+                                                ? FontWeight.bold
+                                                : FontWeight.normal,
                                           ),
                                         ),
                                       ),
@@ -274,6 +293,10 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
               CheckOutPriceCard(
                 cartItem: 'Add To Cart',
                 price: product.currentPrice.toString(),
+                onPressedAddToCartItem:
+                    context.watch<AddToCartProvider>().addToCartProgress
+                    ? null
+                    : _onTapAddToCart,
               ),
             ],
           );
@@ -281,5 +304,29 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
       ),
     );
   }
-}
 
+  Future<void> _onTapAddToCart() async {
+    if(await AuthController.isLoggedIn()==false){
+      Navigator.pushNamed(context, SignInScreen.name);
+      return;
+    }
+
+
+    AddToCartParams params = AddToCartParams(
+      productId: widget.productId,
+      color: _selectedColor ?? '',
+      size: _selectedSize ?? '',
+      quantity: _quantity,
+    );
+    final result = await context.read<AddToCartProvider>().addToCart(params);
+    if (result && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Added to cart successfully!')),
+      );
+    } else if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to add to cart. Try again.')),
+      );
+    }
+  }
+}

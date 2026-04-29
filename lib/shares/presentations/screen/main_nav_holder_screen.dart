@@ -1,4 +1,5 @@
 import 'package:crafty_bay/app/app_color.dart';
+import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:crafty_bay/features/cart/presentation/screens/cart_item_screen.dart';
 import 'package:crafty_bay/features/home/presentation/screen/home_screen.dart';
 import 'package:crafty_bay/features/wishlist/presentation/screen/wish_list_screen.dart';
@@ -6,6 +7,7 @@ import 'package:crafty_bay/shares/presentations/provider/category_list_provider.
 import 'package:crafty_bay/shares/presentations/provider/main_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../app/controller/auth_controller.dart';
 import '../../../features/auth/presentation/provider/home_slider_provider.dart';
 import '../../../features/catagory/presentation/screens/catagory_list_screen.dart';
 
@@ -17,46 +19,60 @@ class MainNavHolderScreen extends StatefulWidget {
 }
 
 class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
-
-  final List<Widget> _screens=[
+  final List<Widget> _screens = [
     HomeScreen(),
     CatagoryListScreen(),
     CartItemScreen(cartItem: 'Cart'),
-    WishListScreen(categories: 'Wish List',),
+    WishListScreen(categories: 'Wish List'),
   ];
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
-       context.read<HomeSliderProvider>().getHomeSlider();
-       context.read<CategoryListProvider>().getCategory();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HomeSliderProvider>().getHomeSlider();
+      context.read<CategoryListProvider>().getCategory();
     });
   }
-  @override
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<MainNavProvider>(
-      builder: (context,mainNavProvider,_) {
+      builder: (context, mainNavProvider, _) {
         return Scaffold(
           body: _screens[mainNavProvider.selectedIndex],
-           bottomNavigationBar: BottomNavigationBar(
-             currentIndex: mainNavProvider.selectedIndex,
-             selectedItemColor: AppColor.themeColor,
-              unselectedItemColor: Colors.grey,
-              showSelectedLabels: true,
-              onTap: mainNavProvider.setIndex,
-              items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Categories'),
-                BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-                BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: 'WishList'),
-
-
-          ]),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: mainNavProvider.selectedIndex,
+            selectedItemColor: AppColor.themeColor,
+            unselectedItemColor: Colors.grey,
+            showSelectedLabels: true,
+            onTap: (int index) async {
+              if (mainNavProvider.isCheckUserLoggdIn(index)) {
+                final isLoggedIn = await AuthController.isLoggedIn();
+                if (isLoggedIn == false) {
+                  Navigator.pushNamed(context, SignInScreen.name);
+                  return;
+                }
+              }
+              mainNavProvider.setIndex(index);
+            },
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard),
+                label: 'Categories',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: 'Cart',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_outline),
+                label: 'WishList',
+              ),
+            ],
+          ),
         );
-      }
+      },
     );
   }
 }

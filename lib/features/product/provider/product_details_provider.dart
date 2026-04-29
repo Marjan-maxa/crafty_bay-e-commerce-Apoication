@@ -17,6 +17,8 @@ class ProductDetailsProvider extends ChangeNotifier {
 
   Future<bool> getProductDetails(String productId) async {
     bool isSuccess = false;
+    _productDetails = null;
+    _errormessage = null;
     _getProductDetailsProgress = true;
     notifyListeners();
 
@@ -25,16 +27,28 @@ class ProductDetailsProvider extends ChangeNotifier {
     );
 
     if (response.isSuccess) {
-      final data = response.body!['data'];
-      if (data is List && data.isNotEmpty) {
-        _productDetails = ProductDetailsModel.fromJson(data[0]);
-      } else if (data is Map<String, dynamic>) {
-        _productDetails = ProductDetailsModel.fromJson(data);
+      try {
+        final data = response.body!['data'];
+        if (data is List && data.isNotEmpty) {
+          _productDetails = ProductDetailsModel.fromJson(data[0]);
+        } else if (data is Map<String, dynamic>) {
+          _productDetails = ProductDetailsModel.fromJson(data);
+        }
+
+        if (_productDetails != null) {
+          _errormessage = null;
+          isSuccess = true;
+        } else {
+          _errormessage = "Product details not found";
+          isSuccess = false;
+        }
+      } catch (e) {
+        _errormessage = "Failed to load product details. Please try again.";
+        isSuccess = false;
       }
-      _errormessage = null;
-      isSuccess = true;
     } else {
       _errormessage = response.errorMesssage;
+      isSuccess = false;
     }
 
     _getProductDetailsProgress = false;
