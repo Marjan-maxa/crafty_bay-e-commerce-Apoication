@@ -2,6 +2,7 @@ import 'package:crafty_bay/app/provider/localization_provider.dart';
 import 'package:crafty_bay/app/provider/theme_provider.dart';
 import 'package:crafty_bay/app/routes.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/splash_screen.dart';
+import 'package:crafty_bay/features/cart/providers/cart_list_provider.dart';
 import 'package:crafty_bay/features/product/provider/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/product/provider/product_details_provider.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ static GlobalKey<NavigatorState>navigatorKey=GlobalKey<NavigatorState>();
         ChangeNotifierProvider(create: (_)=>CategoryListProvider()),
         ChangeNotifierProvider(create: (_) =>ProductDetailsProvider()),
         ChangeNotifierProvider(create: (_) =>AddToCartProvider()),
+
       ],
       child: Consumer<LocalizationProvider>(
         builder: (context,localizationProvider,child) {

@@ -1,3 +1,5 @@
+import 'package:crafty_bay/features/auth/presentation/widgets/center_indicator.dart';
+import 'package:crafty_bay/features/cart/providers/cart_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../shares/presentations/provider/main_nav_provider.dart';
@@ -13,37 +15,57 @@ class CartItemScreen extends StatefulWidget {
 }
 
 class _CartItemScreenState extends State<CartItemScreen> {
+  final CartListProvider _cartListProvider=CartListProvider();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+     _cartListProvider.getCartList();
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (_,_){
-        context.read<MainNavProvider>().moveToHome();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(onPressed: (){
-            context.read<MainNavProvider>().moveToHome();
-          }, icon: Icon(Icons.arrow_back_ios_new_outlined)
-          ),
-          title: Text(widget.cartItem),
-
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context,index){
-                    return CartItems();
-
-                  }
-              ),
+    return ChangeNotifierProvider.value(
+      value: _cartListProvider,
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (_,_){
+          context.read<MainNavProvider>().moveToHome();
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(onPressed: (){
+              context.read<MainNavProvider>().moveToHome();
+            }, icon: Icon(Icons.arrow_back_ios_new_outlined)
             ),
-            const SizedBox(height: 20),
-            CheckOutPriceCard(cartItem: widget.cartItem, price: '0.00',),
+            title: Text(widget.cartItem),
 
-          ],
+          ),
+          body: Consumer<CartListProvider>(
+
+            builder: (context,_,child) {
+              if(_cartListProvider.getCartListInProgress){
+                return CenterIndicator();
+              }
+              return Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: _cartListProvider.cartList.length,
+                        itemBuilder: (context,index){
+                          return CartItems(cartModel:_cartListProvider.cartList[index] ,);
+
+                        }
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  CheckOutPriceCard(cartItem: widget.cartItem, price: '0.00',),
+
+                ],
+              );
+            }
+          ),
         ),
       ),
     );

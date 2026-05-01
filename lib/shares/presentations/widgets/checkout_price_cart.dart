@@ -1,4 +1,6 @@
+import 'package:crafty_bay/features/cart/providers/cart_list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../app/app_color.dart';
 import '../../../app/app_constants.dart';
@@ -35,7 +37,7 @@ class CheckOutPriceCard extends StatelessWidget {
               const Text("Total Price", style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 4),
               Text(
-                "${Constants.takaSign}$price",
+                "${Constants.takaSign}${context.read<CartListProvider>().totalPrice}",
                 style: TextStyle(
                   color: AppColor.themeColor,
                   fontSize: 18,
@@ -54,8 +56,11 @@ class CheckOutPriceCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              onPressed: onPressedAddToCartItem,
-              child: Text(cartItem),
+              onPressed: () {},
+              child: Text(
+                cartItem,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

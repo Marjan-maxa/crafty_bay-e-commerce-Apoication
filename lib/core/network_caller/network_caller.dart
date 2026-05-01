@@ -15,7 +15,7 @@ class NetworkCaller {
     try {
       final Uri uri = Uri.parse(url);
       _loggerRequest(url);
-      final Response response = await get(uri);
+      final Response response = await get(uri, headers: headers());
       _loggerResponse(response);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final decodedJson = jsonDecode(response.body);

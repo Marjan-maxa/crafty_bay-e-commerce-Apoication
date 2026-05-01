@@ -5,6 +5,8 @@ class Urls {
   static const signInUrl = '$_baseUrl/auth/login';
   static const homeSliderUrl = '$_baseUrl/slides';
   static const addToCartUrl = '$_baseUrl/cart';
+  static const cartListUrl = '$_baseUrl/cart';
+
   static getcategoryUrl(int count, int page) {
     return "$_baseUrl/categories?page=$page&count=$count";
   }
